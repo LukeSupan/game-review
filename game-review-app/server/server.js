@@ -6,7 +6,8 @@ const express = require('express');
 // mongoose is recommended, but in class it was done like this, so i'll practice with this for now
 // if this becomes overwhelmingly annoying or i grow past it, ill switch to mongoose
 // if that is a headache later then i deserve it
-const { MongoClient, ObjectId } = require('mongodb');
+// this is an instance of MongoClient being used to connect to a cluster
+const { MongoClient } = require('mongodb');
 
 // cors. you need cors. (Cross-Origin Resource Sharing)
 // by default browsers block frontend JS from talking to backend on a different origin (like different port)
@@ -27,13 +28,29 @@ app.use(cors());
 // this is what i understand the least currently, research later
 app.use(express.json());
 
-// read the variable in for the URI
-const uri = process.env.MONGO_URI;
+async function main() {
+    // read the variable in for the URI
+    const uri = process.env.MONGO_URI;
 
-// read the database name in using DB_NAME
-const dbName = process.env.DB_NAME;
+    // read the database name in using DB_NAME
+    const dbName = process.env.DB_NAME;
 
-// stores the database connection once established
-let db;
+    const client = new MongoClient(uri);
 
-// TODO add actual database connection
+    // stores the database connection once established
+    let db = client.db(dbName);
+
+
+    try {
+        await client.connect();
+        const collections = await client.db("GameReview").collections();
+        collections.forEach((collection) => console.log(collection.s.namespace.collection))
+        console.log("Connected to MongoDB");
+    } catch (e) {
+        console.error(e);
+    } finally {
+        await client.close();
+    }
+}
+
+main();
