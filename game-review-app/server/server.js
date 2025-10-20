@@ -13,6 +13,7 @@ const { MongoClient } = require('mongodb');
 // by default browsers block frontend JS from talking to backend on a different origin (like different port)
 // you can use cors to allow these requests, this will let my react frontend on the other port talk to this guy. huzzah
 const cors = require('cors');
+const { connectToDB, getDB } = require('./config/db');
 
 // i have a local .env file as you know. this .env file is accessed here
 // loads env variables into process.env object (down below)
@@ -21,36 +22,31 @@ require('dotenv').config();
 // this creates an express ap. it defines routes, middlewares, and starts the server
 const app = express();
 
+// middleware is this and express.json
 // this tells express to use cors middleware for all requests, so react is able to do its thing
 app.use(cors());
-
 // express does not automatically parse JSON. this helps
 // this is what i understand the least currently, research later
 app.use(express.json());
 
 async function main() {
-    // read the variable in for the URI
-    const uri = process.env.MONGO_URI;
 
-    // read the database name in using DB_NAME
-    const dbName = process.env.DB_NAME;
+    // establish connection
+    await connectToDB();
+    const db = getDB();
+    console.log(`Ready: ${db.databaseName}`);
 
-    const client = new MongoClient(uri);
+    // temporary test route:
+    app.get('/', (req, res) => {
+        res.send("Server and DB connected successfully");
+    });
 
-    // stores the database connection once established
-    let db = client.db(dbName);
+    // start listening
+    // listens for connections like GET, POST, PUT, etc
+    // routes and middleware are like pipes, this is the faucet
+    const PORT = process.env.PORT;
+    app.listen(PORT, () => console.log(`Server running of port ${PORT}`));
 
-
-    try {
-        await client.connect();
-        const collections = await client.db("GameReview").collections();
-        collections.forEach((collection) => console.log(collection.s.namespace.collection))
-        console.log("Connected to MongoDB");
-    } catch (e) {
-        console.error(e);
-    } finally {
-        await client.close();
-    }
 }
 
 main();
