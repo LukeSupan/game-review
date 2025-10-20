@@ -29,6 +29,24 @@ app.use(cors());
 // this is what i understand the least currently, research later
 app.use(express.json());
 
+
+// ROUTES
+const authRoutes = require('./routes/authRoutes');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 async function main() {
 
     // establish connection
@@ -40,6 +58,10 @@ async function main() {
     app.get('/', (req, res) => {
         res.send("Server and DB connected successfully");
     });
+
+    // external routes:
+    app.use('/api', authRoutes); // login and signup
+
 
     // start listening
     // listens for connections like GET, POST, PUT, etc
