@@ -49,21 +49,23 @@ function LoginForm() {
     }
 
     return (
-        <form onSubmit={handleLogin}>
-            <input
-                type="text"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-            />
-            <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-            <button type="submit">Login</button>
-        </form>
+        <div class="auth-container">
+            <form onSubmit={handleLogin}>
+                <input
+                    type="text"
+                    placeholder="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                />
+                <input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+                <button type="submit">Login</button>
+            </form>
+        </div>
     );
 }
 

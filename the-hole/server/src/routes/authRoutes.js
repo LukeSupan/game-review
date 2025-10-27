@@ -32,6 +32,7 @@ router.post('/register', async(req, res) => {
         const result = await db.collection('users').insertOne({
             username,
             password: hashedPassword,
+            admin: false
         })
 
         // if we get here it worked
