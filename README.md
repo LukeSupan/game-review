@@ -1,6 +1,2 @@
-# game-review
-mern stack game reviewing site. probably wont be hosted. but maybe
-
-i need practice all around. this is all around practice. huzzah
-
-currently lets you signup and login. uses MongoDB (without mongoose)
+# luke blog
+personal blog. ill probably just use it to talk about games if i host it but. i don't currently plan to. more just practice with MERN
