@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // basic login form
 function LoginForm() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-
+    const navigate = useNavigate();
     const backendUrl = import.meta.env.VITE_BACKEND_URL
 
     const handleLogin = async (e) => {
@@ -33,7 +34,13 @@ function LoginForm() {
 
             console.log('Login successful:', data);
 
-            // we would handle going to the new page now but, i dont have one those currently
+            // store the token if sent.
+            if (data.token) {
+                localStorage.setItem('token', data.token);
+            }
+
+            // handle going to new page
+            navigate('/home');
             
 
         } catch (err) {

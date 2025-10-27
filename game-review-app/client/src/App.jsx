@@ -1,13 +1,9 @@
-import WelcomeMessage from "./components/Welcome";
-import LoginForm from "./components/LoginForm";
-import RegisterForm from "./components/RegisterForm";
+import AppRoutes from "./routes/AppRoutes";  // import your routes
 
 const App = () => {
   return (
     <div>
-      <WelcomeMessage />
-      <LoginForm />
-      <RegisterForm />
+      <AppRoutes />
     </div>
   );
 }
