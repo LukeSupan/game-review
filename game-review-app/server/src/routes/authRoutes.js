@@ -75,7 +75,7 @@ router.post('/login', async(req, res) => {
         // this signs the token, only the backend knows JWT_SECRET. so sneaky
         const token = jwt.sign(
             { id: user_id, username: user.username },
-            process.env.JWT_SECRET || 'devsecret',
+            process.env.JWT_SECRET,
             { expiresIn: '1h' }
         )
 
