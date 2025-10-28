@@ -16,8 +16,12 @@ router.get('/', async(req, res) => {
     // go into the DB, get the posts, return them
     try {
         // find them, sort them by date (which is stored as ID), make posts an array
-        const posts = await db.collection('posts');
-        posts.find().sort({_id: -1 }).toArray();
+        const posts = await db.collection('posts')
+                .find()
+                .sort({ _id: -1 })
+                .toArray();
+
+            res.status(200).json(posts); // send json to client
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Failed to get posts' });
@@ -43,7 +47,9 @@ router.post('/', async(req, res) => {
             updatedAt: new Date()
         });
 
-        res.status(201).json(reuslt.ops[0])
+        const createdPost = await db.collection('posts').findOne({ _id: result.insertedId });
+
+        res.status(201).json(createdPost);
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Failed to create post' });

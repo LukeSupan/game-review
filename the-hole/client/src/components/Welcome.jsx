@@ -1,6 +1,6 @@
 function WelcomeMessage() {
     return (
-        <div class="site-title">
+        <div className="site-title">
             <h1>THE HOLE</h1>
         </div>
     )

@@ -14,7 +14,7 @@ function LoginForm() {
         
         // connect route
         try {
-            const res = await fetch(`${backendUrl}/api/login`, {
+            const res = await fetch(`${backendUrl}/api/auth/login`, {
                 
                 // POST request, sending data
                 method: 'POST',
@@ -49,7 +49,7 @@ function LoginForm() {
     }
 
     return (
-        <div class="auth-container">
+        <div className="auth-container">
             <form onSubmit={handleLogin}>
                 <input
                     type="text"

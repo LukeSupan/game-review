@@ -13,7 +13,7 @@ function RegisterForm() {
         
         // connect route
         try {
-            const res = await fetch(`${backendUrl}/api/register`, {
+            const res = await fetch(`${backendUrl}/api/auth/register`, {
                 
                 // POST request, sending data
                 method: 'POST',
@@ -33,16 +33,17 @@ function RegisterForm() {
 
             console.log('Register successful:', data);
 
-            // we would handle going to the new page now but, i dont have one those currently
-            
+            setUsername("");
+            setPassword("");
 
         } catch (err) {
             console.error('Register error:', err.message);
         }
+
     }
 
     return (
-        <div class="auth-container">
+        <div className="auth-container">
             <form onSubmit={handleRegister}>
                 <input
                     type="text"
