@@ -32,18 +32,7 @@ app.use(express.json());
 
 // ROUTES
 const authRoutes = require('./routes/authRoutes');
-
-
-
-
-
-
-
-
-
-
-
-
+const postRoutes = require('./routes/postRoutes');
 
 
 
@@ -60,7 +49,8 @@ async function main() {
     });
 
     // external routes:
-    app.use('/api', authRoutes); // login and signup
+    app.use('/api/auth', authRoutes); // login and signup
+    app.use('/api/posts', postRoutes); // post routes
 
 
     // start listening
