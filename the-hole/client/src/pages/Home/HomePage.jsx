@@ -36,11 +36,54 @@ export default function HomePage() {
 
             if (!res.ok) throw new Error("Failed to create post");
             const createdPost = await res.json();
-            setPosts((prev) => [...prev, createdPost]);
+            setPosts((prev) => 
+                [createdPost, ...prev]);
 
             }   catch (err) {
                 console.error(err);
             }
+    };
+
+    const handleUpdatePost = async (id, updatedPost) => {
+        try {
+            const res = await fetch(`${backendUrl}/api/posts/${id}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(updatedPost),
+            });
+
+            if (!res.ok) throw new Error("Failed to update post");
+
+            // update the post
+            setPosts((prev) =>
+                prev.map((post) =>
+
+                    (post._id === id 
+                        ? { ...post, ...updatedPost } 
+                        : post)
+                )
+            );
+            
+        }   catch (err) {
+            console.error(err);
+        }
+    };
+
+        const handleDeletePost = async (id) => {
+        try {
+            const res = await fetch(`${backendUrl}/api/posts/${id}`, {
+                method: "DELETE",
+            });
+
+            if (!res.ok) throw new Error("Failed to delete post");
+
+            setPosts((prev) =>
+                prev.filter((post) => post._id !== id)
+            );
+
+        } catch (err) {
+            console.error(err);
+        }
     };
 
     return (
@@ -55,7 +98,12 @@ export default function HomePage() {
                     <p className="posts-empty-text">No posts yet.</p>
                 ) : (
                     posts.map((post) => (
-                        <Post key={post._id} title={post.title} body={post.body} />
+                        <Post
+                            key={post._id} 
+                            post={post}
+                            onUpdate={(updatedData) => handleUpdatePost(post._id, updatedData)}
+                            onDelete={() => handleDeletePost(post._id)}
+                        />
                     ))
                 )}
             </div>

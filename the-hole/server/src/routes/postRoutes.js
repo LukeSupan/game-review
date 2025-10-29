@@ -21,7 +21,7 @@ router.get('/', async(req, res) => {
                 .sort({ _id: -1 })
                 .toArray();
 
-            res.status(200).json(posts); // send json to client
+            res.status(200).json(posts);
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Failed to get posts' });
@@ -77,7 +77,9 @@ router.put('/:id', async(req, res) => {
             { $set: { title, body, updatedAt: new Date() } }
         );
 
-        res.status(200).json({ message: 'Post updated successfully'});
+        const updatedPost = await db.collection('posts').findOne({ _id: new ObjectId(id) }); 
+
+        res.status(200).json(updatedPost);
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Failed to update post' });
