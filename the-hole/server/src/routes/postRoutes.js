@@ -1,10 +1,12 @@
 // if you are looking at this for some reason, I understand these comments are redundant, I'm doing it for the sake of learning
 // everything needed for encryption stuff
 const express = require('express');
-const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { getDB } = require('../config/db');
 const { ObjectId } = require('mongodb');
+
+// middleware
+const auth = require('../middleware/auth');
 
 // router for routes
 const router = express.Router();
@@ -29,7 +31,7 @@ router.get('/', async(req, res) => {
 });
 
 // create a post given a title, body (admin)
-router.post('/', async(req, res) => {
+router.post('/', auth, async(req, res) => {
     const db = getDB();
     const { title, body } = req.body;
 
@@ -57,7 +59,7 @@ router.post('/', async(req, res) => {
 });
 
 // update a post givent the post (admin)
-router.put('/:id', async(req, res) => {
+router.put('/:id', auth, async(req, res) => {
     const db = getDB();
     const { id } = req.params;
     const { title, body } = req.body;
@@ -88,7 +90,7 @@ router.put('/:id', async(req, res) => {
 
 
 // delete a post given the post (admin)
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
     const db = getDB();
     const { id } = req.params;
 
