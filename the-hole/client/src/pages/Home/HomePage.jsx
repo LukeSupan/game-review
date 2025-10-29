@@ -9,6 +9,8 @@ export default function HomePage() {
     const [posts, setPosts] = useState([]);
     const backendUrl = import.meta.env.VITE_BACKEND_URL
 
+    // after rendering this a component, it also calls fetchPosts to get posts
+    // without it, the posts state would remain empty besides the ones added on frontend
     useEffect(() => {
         const fetchPosts = async () => {
             try {
@@ -44,6 +46,7 @@ export default function HomePage() {
             }
     };
 
+    // given id and the updated post, go into DB and update the correct post
     const handleUpdatePost = async (id, updatedPost) => {
         try {
             const res = await fetch(`${backendUrl}/api/posts/${id}`, {
