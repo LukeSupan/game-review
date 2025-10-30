@@ -30,9 +30,12 @@ export default function HomePage() {
     // Date.now creates an ID for the post based on the date
     const handleAddPost = async (newPost) => {
         try {
+            const token = localStorage.getItem("token");
             const res = await fetch(`${backendUrl}/api/posts`, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: { 
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}` },
                 body: JSON.stringify(newPost),
             });
 
@@ -49,9 +52,12 @@ export default function HomePage() {
     // given id and the updated post, go into DB and update the correct post
     const handleUpdatePost = async (id, updatedPost) => {
         try {
+            const token = localStorage.getItem("token");
             const res = await fetch(`${backendUrl}/api/posts/${id}`, {
                 method: "PUT",
-                headers: { "Content-Type": "application/json" },
+                headers: { 
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}` },
                 body: JSON.stringify(updatedPost),
             });
 
@@ -74,8 +80,11 @@ export default function HomePage() {
 
         const handleDeletePost = async (id) => {
         try {
+            const token = localStorage.getItem("token");
             const res = await fetch(`${backendUrl}/api/posts/${id}`, {
                 method: "DELETE",
+                headers: { 
+                "Authorization": `Bearer ${token}` },
             });
 
             if (!res.ok) throw new Error("Failed to delete post");

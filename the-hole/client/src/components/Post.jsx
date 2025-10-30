@@ -1,6 +1,8 @@
 // ignore redundant comments, its for learning
 
-import { useState } from "react";
+// jwtDecode to show proper frontend
+import { jwtDecode as jwt_decode } from "jwt-decode";
+import { useState, useEffect } from "react";
 
 export default function Post({ post, onUpdate, onDelete }) {
     // variables with useState.
@@ -9,6 +11,15 @@ export default function Post({ post, onUpdate, onDelete }) {
     const [isEditing, setIsEditing] = useState(false);
     const [editedTitle, setEditedTitle] = useState(post.title);
     const [editedBody, setEditedBody] = useState(post.body);
+    const [isAdmin, setIsAdmin] = useState(false);
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            const decoded = jwt_decode(token);
+            setIsAdmin(decoded.admin);
+        }
+    })
 
 
     // on click, set isEditing to true
@@ -67,8 +78,14 @@ export default function Post({ post, onUpdate, onDelete }) {
                 <>
                     <h3 className="post-title">{post.title}</h3>
                     <p className="post-body">{post.body}</p>
-                    <button onClick={handleEditClick} className="edit-post-buttons">Edit</button>
-                    <button onClick={handleDelete} className="delete-button">Delete</button>
+                    
+                    { /* Don't display these if user isn't an admin */}
+                    {isAdmin && (
+                        <>
+                            <button onClick={handleEditClick} className="edit-post-buttons">Edit</button>
+                            <button onClick={handleDelete} className="delete-button">Delete</button>
+                        </>
+                    )}
                 </>
             )}
         </div>

@@ -7,11 +7,13 @@ const { ObjectId } = require('mongodb');
 
 // middleware
 const auth = require('../middleware/auth');
+const adminCheck = require('../middleware/adminCheck');
 
 // router for routes
 const router = express.Router();
 
 // get posts from DB (all)
+// unprotected. idc who sees my posts
 router.get('/', async(req, res) => {
     const db = getDB();
 
@@ -31,7 +33,7 @@ router.get('/', async(req, res) => {
 });
 
 // create a post given a title, body (admin)
-router.post('/', auth, async(req, res) => {
+router.post('/', auth, adminCheck, async(req, res) => {
     const db = getDB();
     const { title, body } = req.body;
 
@@ -59,7 +61,7 @@ router.post('/', auth, async(req, res) => {
 });
 
 // update a post givent the post (admin)
-router.put('/:id', auth, async(req, res) => {
+router.put('/:id', auth, adminCheck, async(req, res) => {
     const db = getDB();
     const { id } = req.params;
     const { title, body } = req.body;
@@ -90,7 +92,7 @@ router.put('/:id', auth, async(req, res) => {
 
 
 // delete a post given the post (admin)
-router.delete('/:id', auth, async (req, res) => {
+router.delete('/:id', auth, adminCheck, async (req, res) => {
     const db = getDB();
     const { id } = req.params;
 
