@@ -1,12 +1,16 @@
+import "./Home.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode as jwt_decode } from "jwt-decode";
 import Welcome from "../../components/Welcome";
 import CreatePost from "../../components/CreatePost";
 import Post from "../../components/Post";
 
 
+
 export default function HomePage() {
     const [posts, setPosts] = useState([]);
+    const [isAdmin, setIsAdmin] = useState(false);
     const backendUrl = import.meta.env.VITE_BACKEND_URL
 
     // after rendering this a component, it also calls fetchPosts to get posts
@@ -25,6 +29,14 @@ export default function HomePage() {
 
         fetchPosts();
     }, []);
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            const decoded = jwt_decode(token);
+            setIsAdmin(decoded.admin);
+        }
+    })
 
     // we get a new post, then get the posts that currently exist, and return an array with those posts + the new post just created (thats what the ... does)
     // Date.now creates an ID for the post based on the date
@@ -102,7 +114,8 @@ export default function HomePage() {
         <div className="home-page">
             <Welcome />
 
-            <CreatePost onSubmit={handleAddPost}/>
+            {/* only shows up if user is an admin */}
+            {isAdmin && <CreatePost onSubmit={handleAddPost} />}
 
             {/* Contains and displays post array */}
             <div className="posts-container">

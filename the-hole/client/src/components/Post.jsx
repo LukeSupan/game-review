@@ -19,7 +19,7 @@ export default function Post({ post, onUpdate, onDelete }) {
             const decoded = jwt_decode(token);
             setIsAdmin(decoded.admin);
         }
-    })
+    }, []);
 
 
     // on click, set isEditing to true
@@ -77,6 +77,11 @@ export default function Post({ post, onUpdate, onDelete }) {
             ) : (
                 <>
                     <h3 className="post-title">{post.title}</h3>
+
+                    {post.adminName && (
+                        <p className="post-author">Author: {post.adminName}</p>
+                    )}
+
                     <p className="post-body">{post.body}</p>
                     
                     { /* Don't display these if user isn't an admin */}

@@ -1,0 +1,171 @@
+/* global dark theme, white text, and font */
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: monospace;
+    margin: 0;
+    padding: 0;
+}
+
+/* each individual post container */
+/* lighter color background to look nice */
+.post-container {
+    background-color: #1e1e1e;
+    border-radius: 6px;
+    padding: 16px;
+    margin: 12px auto;
+    max-width: 100%;
+}
+
+/* title for each post, most reading text is white */
+.post-title {
+    margin: 0 0 8px 0;
+    font-size: 1.6em;
+    color: #ffffff;
+}
+
+/* author for each post, darker color */
+.post-author {
+    margin: 0 0 8px 0;
+    font-size: 1em;
+    color: #8f8f8f;
+}
+
+/* Post body text */
+.post-body {
+    margin: 0 0 8px;
+    line-height: 1.4;
+    white-space: pre-wrap;
+}
+
+/* Text inputs and textarea for editing */
+.edit-post-title,
+.edit-post-body {
+    width: 100%;
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    border: 1px solid #444;
+    border-radius: 4px;
+    padding: 8px;
+    margin-bottom: 8px;
+    font-family: monospace;
+}
+
+/* Buttons */
+button {
+    background-color: #333;
+    color: #e0e0e0;
+    border: 1px solid #555;
+    border-radius: 4px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-family: monospace;
+    margin-right: 6px;
+}
+
+button:hover {
+    background-color: #444;
+}
+
+.save-button {
+    border-color: #4caf50;
+}
+
+.cancel-button {
+    border-color: #f44336;
+}
+
+.delete-button {
+    border-color: #e53935;
+}
+
+/* Page wrapper */
+.home-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Title styling */
+.site-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.site-title h1 {
+    font-size: 2em;
+    margin: 0;
+    color: #ffffff;
+    letter-spacing: 2px;
+}
+
+/* Posts container */
+.posts-container {
+    width: 100%;
+    max-width: 700px;
+}
+
+/* Empty message */
+.posts-empty-text {
+    color: #777;
+    text-align: center;
+    font-style: italic;
+}
+
+
+/* Create Post section */
+.create-post-container {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 6px;
+    padding: 16px;
+    margin-bottom: 20px;
+    max-width: 600px;
+    width: 100%;
+}
+
+.create-post-title {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 1.2em;
+    color: #ffffff;
+    text-align: center;
+}
+
+.create-post-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.create-post-form-title,
+.create-post-form-body {
+    width: 100%;
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    border: 1px solid #444;
+    border-radius: 4px;
+    padding: 8px;
+    font-family: monospace;
+}
+
+.create-post-form-body {
+    height: 100px;
+    resize: vertical;
+}
+
+.create-post-form-button {
+    background-color: #333;
+    color: #e0e0e0;
+    border: 1px solid #555;
+    border-radius: 4px;
+    padding: 8px;
+    font-family: monospace;
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+.create-post-form-button:hover {
+    background-color: #444;
+}

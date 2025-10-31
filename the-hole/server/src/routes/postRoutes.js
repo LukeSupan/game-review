@@ -44,11 +44,17 @@ router.post('/', auth, adminCheck, async(req, res) => {
 
     // try to create a new post, if it fails delete it. make the updatedAt date the createdAt date because its new
     try {
+        const adminId = req.user.id;
+        const adminName = req.user.username;
+
+
         const result = await db.collection('posts').insertOne({
             title,
             body,
             createdAt: new Date(),
-            updatedAt: new Date()
+            updatedAt: new Date(),
+            adminId,
+            adminName
         });
 
         const createdPost = await db.collection('posts').findOne({ _id: result.insertedId });

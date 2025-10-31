@@ -1,0 +1,85 @@
+/* Global page styling */
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: monospace;
+    margin: 0;
+    padding: 0;
+}
+
+/* Page wrapper for auth */
+.auth-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 40px 20px;
+    min-height: 100vh;
+}
+
+/* Site title / welcome component */
+.site-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.site-title h1 {
+    font-size: 2.2em;
+    margin: 0;
+    color: #ffffff;
+    letter-spacing: 2px;
+}
+
+/* Container for login/register forms */
+.auth-container {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 6px;
+    padding: 24px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Forms inside auth container */
+.auth-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Inputs */
+.auth-container input {
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    border: 1px solid #444;
+    border-radius: 4px;
+    padding: 10px;
+    font-family: monospace;
+    font-size: 1em;
+}
+
+/* Buttons */
+.auth-container button {
+    background-color: #333;
+    color: #e0e0e0;
+    border: 1px solid #555;
+    border-radius: 4px;
+    padding: 10px;
+    font-family: monospace;
+    cursor: pointer;
+}
+
+.auth-container button:hover {
+    background-color: #444;
+}
+
+/* Optional: style placeholder text */
+.auth-container input::placeholder {
+    color: #aaa;
+}
+
+/* Small tweak for empty space when switching forms */
+.auth-container + .auth-container {
+    margin-top: 10px;
+}
