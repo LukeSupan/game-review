@@ -24,12 +24,14 @@ I could also keep the author feature and add sorting by author to let my friends
     - MONGO_URI=mongodb://localhost:27017/
     - DB_NAME=HoleDB
 
+For the PORT, do whatever PORT you used with VITE_BACKEND_URL (technically, VITE is doing what you do here, but regardless).
 
 For JWT_SECRET, put whatever (as in anything you want that works); it doesn't matter, I just used the word whatever. You can generate one if you'd like. I had one for a bit, then lost it and did this.
 
+For MONGO_URI, that is probably what you need to put. Check connection info on your connection and use that though. You set it.
+
 For DB_NAME, make it whatever the name of the DB you end up using. I used HoleDB
 
-For the PORT, do whatever PORT you used with VITE_BACKEND_URL (technically, VITE is doing what you do here, but regardless).
 
 7. Open MongoDB Compass, create a Connection, in it create a database, name it whatever (HoleDB if following exactly).
 8. Create a collection named posts and a collection named users

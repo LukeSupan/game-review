@@ -17,14 +17,17 @@ body {
 
 /* || INDIVIDUAL POST SECTION */
 /* each individual post container */
-/* lighter color background to look nice */
 .posts-container {
+    width: 66%;
+    margin: 0 auto;
+}
+
+.post-container {
     background-color: #1e1e1e;
-    border: none;
     border-radius: 6px;
     padding: 16px;
-    width: 60%;
-    margin: 12px auto;
+    margin-bottom: 16px;
+    box-sizing: border-box;
 }
 
 /* message for no posts. simple */
@@ -110,8 +113,9 @@ button:hover {
     border: none;
     border-radius: 6px;
     padding: 16px;
-    margin-bottom: 20px;
-    width: 60%;
+    margin-bottom: 32px;
+    width: 66%;
+    box-sizing: border-box;
 }
 
 .create-post-title {
