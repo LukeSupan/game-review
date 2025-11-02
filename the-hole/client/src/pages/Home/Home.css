@@ -19,7 +19,7 @@ body {
 /* || INDIVIDUAL POST SECTION */
 /* each individual post container */
 .posts-container {
-    width: 66%;
+    width: 50%;
     margin: 0 auto;
 }
 
@@ -69,6 +69,9 @@ body {
     border: none;
     padding: 8px;
     margin-bottom: 8px;
+    font-family: monospace;
+    resize: vertical;
+    box-sizing: border-box;
 }
 
 /* button styles */
@@ -115,7 +118,7 @@ button:hover {
     border-radius: 6px;
     padding: 16px;
     margin-bottom: 32px;
-    width: 66%;
+    width: 50%;
     box-sizing: border-box;
 }
 
