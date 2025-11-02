@@ -2,9 +2,12 @@ import "./Home.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode as jwt_decode } from "jwt-decode";
+
+
 import Welcome from "../../components/Welcome";
 import CreatePost from "../../components/CreatePost";
 import Post from "../../components/Post";
+import Logout from "../../components/Logout";
 
 
 
@@ -112,6 +115,7 @@ export default function HomePage() {
 
     return (
         <div className="home-page">
+            <Logout />
             <Welcome />
 
             {/* only shows up if user is an admin */}
